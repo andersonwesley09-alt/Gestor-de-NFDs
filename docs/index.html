@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#30206b">
+<title>NFD Control | Controle de NFDs, NFBs e BFs</title>
+<link rel="stylesheet" href="./style.css">
+<script src="./demo.js" defer></script>
+</head>
+<body>
+<div class="demo-strip">DEMONSTRAÇÃO • dados fictícios • sem conexão com servidor ou banco real <button id="resetDemo" type="button">Reiniciar dados</button></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<section id="auth" class="auth-shell">
+  <div class="auth-card">
+    <div class="logo-large" aria-hidden="true">⇄</div>
+    <div class="eyebrow">CONTROLE SIMPLIFICADO DE DOCUMENTOS</div>
+    <h1>NFD Control</h1>
+    <p>Cadastre as notas, case os documentos e acompanhe o saldo de cada fornecedor.</p>
+    <form id="authForm" class="form-stack">
+      <label id="authUserLabel">Usuário<input id="authUser" type="text" autocomplete="username" maxlength="40" value="admin" required></label>
+      <label><span id="authLabel">Seu PIN ou senha</span><input id="authPassword" type="password" autocomplete="current-password" required placeholder="Digite seu PIN ou senha"></label>
+      <button type="submit" class="primary full" id="authSubmit">Entrar no sistema</button>
+      <small id="authHelp">Demonstração: usuário admin · senha demo123</small>
+    </form>
+  </div>
+</section>
+<div id="app" hidden>
+  <aside id="sidebar">
+    <div class="brand"><div class="brand-mark">⇄</div><div><strong>NFD Control</strong><span>NFDs · NFBs · BF · Saldos</span></div></div>
+    <div class="menu-label">MENU PRINCIPAL</div>
+    <nav id="menu" aria-label="Navegação">
+      <button type="button" data-page="dashboard"><span>▦</span> Dashboard</button>
+      <button type="button" data-page="fornecedores"><span>♧</span> Fornecedores</button>
+      <button type="button" data-page="documentos"><span>▤</span> NFDs, NFBs e BFs</button>
+      <button type="button" data-page="casamentos"><span>⇄</span> Casar documentos</button>
+      <button type="button" data-page="extrato"><span>▥</span> Extrato do fornecedor</button>
+    </nav>
+    <div class="sidebar-bottom">
+      <button id="profileButton" type="button" class="user-dot" aria-label="Abrir meu perfil e administração" title="Meu perfil e administração"><span class="profile-avatar">●</span><div><strong id="currentUser">admin</strong><small id="currentRole">Administrador · Conectado</small></div><span class="profile-chevron">›</span></button>
+      <button id="logout" class="sidebar-logout" type="button">Sair do sistema</button>
+      <div class="sidebar-version">NFD Control · V2.1.9</div>
+    </div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><button type="button" id="menuToggle" class="menu-toggle" aria-label="Abrir menu">☰</button><span>NFD Control · Controle de NFDs, NFBs e Bonificações</span><span id="connectionStatus" class="topbar-pill">Modo demonstração · offline</span></header>
+    <main>
+      <div class="heading"><div><div class="eyebrow">CONTROLE SIMPLIFICADO</div><h1 id="pageTitle">Dashboard</h1><p id="pageSubtitle">Resumo financeiro por fornecedor</p></div><span class="heading-hint">BF − NFD − NFB = Saldo</span></div>
+      <button id="atualizacaoPendente" type="button" class="new-data" hidden>Novos dados disponíveis · Clique para atualizar</button><div id="page" aria-live="polite"></div>
+      <footer class="footer"><span>NFD Control</span><i>•</i><span>Versão <strong>V2.1.9</strong></span><i>•</i><span>© 2026 Todos os direitos reservados</span><i>•</i><span>Criador do sistema: <strong>Wesley</strong></span></footer>
+    </main>
+  </div>
+</div>
+<dialog id="dialog"><div class="modal-header"><h2 id="dialogTitle">Editar</h2><button id="dialogClose" class="icon-btn" aria-label="Fechar" type="button">×</button></div><div id="dialogBody"></div></dialog>
+</body>
+</html>
